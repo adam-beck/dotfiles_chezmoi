@@ -9,11 +9,27 @@
 [core]
   pager = delta
 
+[alias]
+    # `git log` with patches shown with difftastic.
+    dl = -c diff.external=difft log -p --ext-diff
+
+    # Show the most recent commit with difftastic.
+    ds = -c diff.external=difft show --ext-diff
+
+    # `git diff` with difftastic.
+  dft = difftool -y --tool=difft-inline
+
 [interactive]
   diffFilter = delta --color-only
 
 [delta]
+  features = colibri
   navigate = true
+  light = false
+  side-by-side = false
+
+[difftool "difft-inline"]
+    cmd = difft --display=inline "$LOCAL" "$REMOTE"
 
 [credential "https://github.com"]
 	helper = 
