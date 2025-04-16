@@ -171,6 +171,8 @@ eval "$(zoxide init zsh)"
 
 source $HOME/.aliases
 
+source $HOME/forgit/forgit.plugin.zsh
+
 # fnm
 FNM_PATH="/home/adam/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
