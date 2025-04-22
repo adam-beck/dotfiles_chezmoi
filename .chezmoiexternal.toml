@@ -1,0 +1,4 @@
+[".config/nvim"]
+    type = "git-repo"
+    url = "https://github.com/adam-beck/kickstart.nvim.git"
+    refreshPeriod = "168h"  # Update weekly - adjust as needed
