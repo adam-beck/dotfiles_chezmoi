@@ -1,0 +1,3 @@
+{{- if eq .chezmoi.hostname "C02FL094MD6R" }}
+.gitconfig
+{{- end }}
