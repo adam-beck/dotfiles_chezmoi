@@ -33,7 +33,7 @@
 
 [credential "https://github.com"]
 	helper = 
-	helper = !/home/adam/.local/share/mise/installs/aqua-cli-cli/2.70.0/gh_2.70.0_linux_amd64/bin/gh auth git-credential
+	helper = !/home/adambeck/.local/share/mise/installs/aqua-cli-cli/2.72.0/gh_2.72.0_linux_amd64/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/home/adam/.local/share/mise/installs/aqua-cli-cli/2.70.0/gh_2.70.0_linux_amd64/bin/gh auth git-credential
+	helper = !/home/adambeck/.local/share/mise/installs/aqua-cli-cli/2.72.0/gh_2.72.0_linux_amd64/bin/gh auth git-credential
