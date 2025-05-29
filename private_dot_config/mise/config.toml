@@ -17,3 +17,6 @@ chezmoi = "2.62.1"
 "aqua:cli/cli" = "latest"
 difftastic = "latest"
 neovim = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = []
