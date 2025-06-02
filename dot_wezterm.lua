@@ -16,7 +16,7 @@ local function get_mise_path(tool)
   return nil
 end
 
-local zoxide_path = get_mise_path("zoxide") or "/usr/bin/zoxide"
+local zoxide_path = get_mise_path("zoxide") or "/usr/local/bin/zoxide"
 
 config.tab_bar_at_bottom = true
 
