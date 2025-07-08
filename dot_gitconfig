@@ -1,10 +1,9 @@
 [user]
     email = adam@codelobe.io
     name = Adam Beck
-[merge]
-    conflictstyle = zdiff3
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [core]
   pager = delta
@@ -17,7 +16,7 @@
     ds = -c diff.external=difft show --ext-diff
 
     # `git diff` with difftastic.
-  dft = difftool -y --tool=difft-inline
+    dft = difftool -y --tool=difft-inline
 
 [interactive]
   diffFilter = delta --color-only
@@ -28,12 +27,14 @@
   light = false
   side-by-side = false
 
-[difftool "difft-inline"]
-    cmd = difft --display=inline "$LOCAL" "$REMOTE"
+# [difftool "difft-inline"]
+#    cmd = difft --display=inline "$LOCAL" "$REMOTEn
 
-[credential "https://github.com"]
-	helper = 
-	helper = !/home/adambeck/.local/share/mise/installs/aqua-cli-cli/2.72.0/gh_2.72.0_linux_amd64/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/home/adambeck/.local/share/mise/installs/aqua-cli-cli/2.72.0/gh_2.72.0_linux_amd64/bin/gh auth git-credential
+[merge]
+    tool = nvimdiff
+
+[mergetool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[difftool]
+    prompt = false
