@@ -1,1 +1,4 @@
 skip_global_compinit=1
+. "$HOME/.cargo/env"
+
+export EDITOR="/home/adambeck/.local/share/mise/installs/neovim/0.11.1/nvim-linux-x86_64/bin/nvim"
