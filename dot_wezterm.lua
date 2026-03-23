@@ -18,9 +18,13 @@ end
 
 local zoxide_path = get_mise_path("zoxide") or "/usr/local/bin/zoxide"
 
+config.term = "wezterm"
 config.tab_bar_at_bottom = true
 
 config.font = wezterm.font("JetBrainsMono NF")
+
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = false
 
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 
