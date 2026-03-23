@@ -27,9 +27,6 @@
   light = false
   side-by-side = false
 
-# [difftool "difft-inline"]
-#    cmd = difft --display=inline "$LOCAL" "$REMOTEn
-
 [merge]
     tool = nvimdiff
 
@@ -37,4 +34,10 @@
     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [difftool]
-    prompt = false
+  prompt = false
+[credential "https://github.com"]
+	helper = 
+	helper = !$HOME/.local/share/mise/shims/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !$HOME/.local/share/mise/shims/gh auth git-credential

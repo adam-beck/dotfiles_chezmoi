@@ -214,3 +214,5 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 
+export PATH="/home/adambeck/.bun/bin:$PATH"
+
