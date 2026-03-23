@@ -1,24 +1,12 @@
 local wezterm = require("wezterm")
+local sessionizer = wezterm.plugin.require("https://github.com/mikkasendke/sessionizer.wezterm")
+local zoxide = wezterm.plugin.require("https://github.com/mikkasendke/sessionizer-zoxide.git")
+local history = wezterm.plugin.require("https://github.com/mikkasendke/sessionizer-history")
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+
 local act = wezterm.action
 local config = wezterm.config_builder()
 
-local function get_mise_path(tool)
-  local handle = io.popen("mise which " .. tool)
-  if handle then
-    local result = handle:read("*a")
-    handle:close()
-
-    result = result:gsub("^%s+", ""):gsub("%s+$", "")
-    if result ~= "" then
-      return result
-    end
-  end
-  return nil
-end
-
-local zoxide_path = get_mise_path("zoxide") or "/usr/local/bin/zoxide"
-
-config.term = "wezterm"
 config.tab_bar_at_bottom = true
 
 config.font = wezterm.font("JetBrainsMono NF")
@@ -36,16 +24,35 @@ tabline.setup({
 })
 
 tabline.apply_to_config(config)
-
-local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
-
-workspace_switcher.zoxide_path = zoxide_path
-
-workspace_switcher.apply_to_config(config)
-
 -- This has to come after the call to `tabline.apply_to_config`
 -- as the plugin will override it
 config.window_decorations = "TITLE | RESIZE"
+
+local schema = {
+  options = { callback = history.Wrapper(sessionizer.DefaultCallback) },
+  {
+    history.MostRecentWorkspace(),
+    processing = sessionizer.for_each_entry(function(entry)
+      entry.label = wezterm.format({
+        { Foreground = { Color = "#cc99ff" } },
+        { Text = entry.label },
+      })
+    end),
+  },
+  {
+    sessionizer.AllActiveWorkspaces({ filter_current = true, filter_default = false }),
+    processing = sessionizer.for_each_entry(function(entry)
+      entry.label = wezterm.format({
+        { Text = "📁 : " .. entry.label },
+      })
+    end),
+  },
+  sessionizer.FdSearch(wezterm.home_dir .. "/repos"),
+  zoxide.Zoxide({}),
+  processing = sessionizer.for_each_entry(function(entry)
+    entry.label = entry.label:gsub(wezterm.home_dir, "~")
+  end),
+}
 
 local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
 
@@ -234,16 +241,16 @@ config.keys = {
     mods = "LEADER|CTRL",
     action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
   },
-  {
-    key = "s",
-    mods = "LEADER",
-    action = workspace_switcher.switch_workspace(),
-  },
-  {
-    key = "S",
-    mods = "LEADER",
-    action = workspace_switcher.switch_to_prev_workspace(),
-  },
+  -- {
+  --   key = "s",
+  --   mods = "LEADER",
+  --   action = workspace_switcher.switch_workspace(),
+  -- },
+  -- {
+  --   key = "S",
+  --   mods = "LEADER",
+  --   action = workspace_switcher.switch_to_prev_workspace(),
+  -- },
   {
     key = "PageUp",
     mods = "",
@@ -354,5 +361,16 @@ config.keys = {
     end),
   },
 }
+
+table.insert(config.keys, {
+  key = "s",
+  mods = "LEADER",
+  action = sessionizer.show(schema),
+})
+table.insert(config.keys, {
+  key = "S",
+  mods = "LEADER",
+  action = history.switch_to_most_recent_workspace,
+})
 
 return config

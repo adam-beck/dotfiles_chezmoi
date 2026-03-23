@@ -169,22 +169,13 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-
-
 eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
 
 source $HOME/.aliases
 
-source $HOME/forgit/forgit.plugin.zsh
-
-# fnm
-FNM_PATH="$HOME/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$HOME/.local/share/fnm:$PATH"
-  eval "`fnm env`"
-fi
+# source $HOME/forgit/forgit.plugin.zsh
 
 source <(fzf --zsh)
 
@@ -208,11 +199,13 @@ esac
 # pnpm end
 
 # fnm
-FNM_PATH="$HOME/.fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$HOME/.fnm:$PATH"
-  eval "`fnm env`"
-fi
+# FNM_PATH="$HOME/.fnm"
+# if [ -d "$FNM_PATH" ]; then
+#   export PATH="$HOME/.fnm:$PATH"
+#   eval "`fnm env`"
+# fi
 
-export PATH="/home/adambeck/.bun/bin:$PATH"
+eval "$(fnm env --use-on-cd --shell zsh)"
 
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

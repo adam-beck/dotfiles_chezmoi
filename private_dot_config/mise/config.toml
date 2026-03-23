@@ -24,6 +24,8 @@ python = "3.14"
 "aqua:sxyazi/yazi" = "latest"
 "github:cli/cli" = "latest"
 bottom = "latest"
+"cargo:worktrunk" = "latest"
+opencode = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
