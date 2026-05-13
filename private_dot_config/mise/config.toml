@@ -26,6 +26,9 @@ python = "3.14"
 bottom = "latest"
 "cargo:worktrunk" = "latest"
 opencode = "latest"
+"cargo:giff" = "latest"
+"nix:solaar" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = []
+experimental = true

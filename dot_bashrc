@@ -119,3 +119,11 @@ eval "$($HOME/.local/bin/mise activate bash)"
 
 eval "$(starship init bash)"
 . "$HOME/.cargo/env"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
