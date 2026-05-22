@@ -1,4 +1,4 @@
-eval "$($HOME/.local/bin/mise activate zsh)"
+eval "$($HOME/.local/bin/mise activate --shims zsh)"
 # Start configuration added by Zim install {{{
 #
 # User configuration sourced by interactive shells
@@ -209,3 +209,6 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+export PATH

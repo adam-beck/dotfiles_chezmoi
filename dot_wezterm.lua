@@ -4,18 +4,30 @@ local zoxide = wezterm.plugin.require("https://github.com/mikkasendke/sessionize
 local history = wezterm.plugin.require("https://github.com/mikkasendke/sessionizer-history")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 
+local home = os.getenv("HOME")
+local path = home .. "/.local/share/mise/shims:" .. (os.getenv("PATH") or "")
+
+local success, stdout, stderr = wezterm.run_child_process({ "which", "fd" })
+
 local act = wezterm.action
 local config = wezterm.config_builder()
+
+config.term = "wezterm"
+
+config.set_environment_variables = {
+  PATH = path,
+}
 
 config.tab_bar_at_bottom = true
 
 config.font = wezterm.font("JetBrainsMono NF")
 config.font_size = 12.0
 
-config.send_composed_key_when_left_alt_is_pressed = false
-config.send_composed_key_when_right_alt_is_pressed = false
+-- config.send_composed_key_when_left_alt_is_pressed = false
+-- config.send_composed_key_when_right_alt_is_pressed = false
 
-local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+config.color_scheme = "Bamboo"
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 tabline.setup({
   options = {
@@ -31,7 +43,7 @@ config.window_decorations = "TITLE | RESIZE"
 local schema = {
   options = { callback = history.Wrapper(sessionizer.DefaultCallback) },
   {
-    history.MostRecentWorkspace(),
+    -- history.MostRecentWorkspace(),
     processing = sessionizer.for_each_entry(function(entry)
       entry.label = wezterm.format({
         { Foreground = { Color = "#cc99ff" } },
@@ -47,7 +59,15 @@ local schema = {
       })
     end),
   },
-  sessionizer.FdSearch(wezterm.home_dir .. "/repos"),
+  sessionizer.FdSearch({
+    wezterm.home_dir .. "/iqies/iqies-ui-developer/packages",
+  }),
+  sessionizer.FdSearch({
+    wezterm.home_dir .. "/iqies/iqies-developer/packages-snc",
+  }),
+  sessionizer.FdSearch({
+    wezterm.home_dir .. "/iqies/iqies-developer/packages-common",
+  }),
   zoxide.Zoxide({}),
   processing = sessionizer.for_each_entry(function(entry)
     entry.label = entry.label:gsub(wezterm.home_dir, "~")
@@ -72,10 +92,6 @@ wezterm.on("augment-command-palette", function(window, pane)
     },
   }
 end)
-
-config.color_scheme = "Bamboo"
-
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
   {
