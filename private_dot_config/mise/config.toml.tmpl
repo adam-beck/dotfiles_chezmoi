@@ -1,39 +1,61 @@
 [tools]
-"aqua:neovim/neovim" = "latest"
+# --- Languages & runtimes ---
 node = "lts"
-bat = "latest"
-eza = "latest"
-lazydocker = "latest"
-rust = "latest"
-starship = "latest"
-zoxide = "latest"
-ripgrep = "latest"
-lazygit = "latest"
-glow = "latest"
-fd = "latest"
-fzf = "latest"
 bun = "latest"
-delta = "latest"
-chezmoi = "2.69.4"
-difftastic = "latest"
-erlang = "latest"
-elixir = "latest"
+rust = "latest"
 go = "latest"
 python = "3.14"
-"cargo:scooter" = "latest"
-"aqua:sxyazi/yazi" = "latest"
-"github:cli/cli" = "latest"
-bottom = "latest"
-"cargo:worktrunk" = "latest"
+erlang = "latest"
+elixir = "latest"       # requires erlang
+
+# --- Dotfile management ---
+chezmoi = "2.69.4"      # pinned
+
+# --- Editor & shell ---
+"aqua:neovim/neovim" = "latest"
+starship = "latest"     # prompt
+zoxide = "latest"       # smarter cd
+fzf = "latest"          # fuzzy finder
+
+# --- CLI replacements & utilities ---
+bat = "latest"          # cat
+eza = "latest"          # ls
+fd = "latest"           # find
+ripgrep = "latest"      # grep
+bottom = "latest"       # top
+glow = "latest"         # markdown renderer
+"aqua:sxyazi/yazi" = "latest"   # file manager
+"cargo:scooter" = "latest"      # find & replace TUI
+
+# --- Git & GitHub ---
+lazygit = "latest"
+delta = "latest"        # diff pager
+difftastic = "latest"   # structural diff
+"github:cli/cli" = "latest"     # gh
+"cargo:worktrunk" = "latest"    # git worktree manager
+"cargo:giff" = "latest"         # git diff TUI
+
+# --- Containers ---
+lazydocker = "latest"
+
+# --- AI tooling ---
 opencode = "latest"
-"cargo:giff" = "latest"
-biome = "latest"
-lua-language-server = "latest"
-stylua = "latest"
 "npm:@agentclientprotocol/claude-agent-acp" = "preview"
-"github:kristoff-it/superhtml" = "latest"
+
+# --- Formatters & linters ---
+biome = "latest"
+stylua = "latest"
 "github:reteps/dockerfmt" = "latest"
-"npm:vscode-langservers-extracted" = "latest"      # css-lsp, html-lsp, json-lsp, eslint-lsp
+"npm:oxfmt" = "latest"
+"npm:oxlint" = "latest"
+"npm:@fsouza/prettierd" = "latest"
+"npm:sql-formatter" = "latest"
+"npm:elm-format" = "latest"
+
+# --- Language servers ---
+lua-language-server = "latest"
+"github:kristoff-it/superhtml" = "latest"
+"npm:vscode-langservers-extracted" = "latest"   # css-lsp, html-lsp, json-lsp, eslint-lsp
 "npm:@astrojs/language-server" = "latest"
 "npm:bash-language-server" = "latest"
 "npm:css-variables-language-server" = "latest"
@@ -42,18 +64,16 @@ stylua = "latest"
 "npm:@elm-tooling/elm-language-server" = "latest"
 "npm:@olrtg/emmet-language-server" = "latest"
 "npm:@stylelint/language-server" = "latest"
-"npm:typescript" = "latest"                        # tsc (also needed by typescript-language-server)
+"npm:typescript" = "latest"                     # tsc (also needed by typescript-language-server)
 "npm:typescript-language-server" = "latest"
 "npm:@vtsls/language-server" = "latest"
-"npm:elm-format" = "latest"
-"npm:oxfmt" = "latest"
-"npm:oxlint" = "latest"
-"npm:@fsouza/prettierd" = "latest"
-"npm:sql-formatter" = "latest"
+"github:ajuvercr/jsonld-lsp" = "1.0.5"          # pinned, as Mason had it
+
+# --- Linux only ---
 {{- if eq .chezmoi.os "linux" }}
-"nix:solaar" = "latest"
+"nix:solaar" = "latest"     # Logitech device manager
 {{- end }}
 
 [settings]
-idiomatic_version_file_enable_tools = []
-experimental = true
+idiomatic_version_file_enable_tools = []    # don't read .nvmrc, .python-version, etc.
+experimental = true                         # needed for the nix: backend
