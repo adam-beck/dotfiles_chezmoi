@@ -1,4 +1,4 @@
-eval "$($HOME/.local/bin/mise activate --shims zsh)"
+eval "$($HOME/.local/bin/mise activate)"
 # Start configuration added by Zim install {{{
 #
 # User configuration sourced by interactive shells
