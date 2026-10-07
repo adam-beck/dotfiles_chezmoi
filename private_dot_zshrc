@@ -198,17 +198,15 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# fnm
-# FNM_PATH="$HOME/.fnm"
-# if [ -d "$FNM_PATH" ]; then
-#   export PATH="$HOME/.fnm:$PATH"
-#   eval "`fnm env`"
-# fi
-
-# eval "$(fnm env --use-on-cd --shell zsh)"
-
-
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
 PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 export PATH
+
+# nub
+export PATH="$HOME/.nub/bin:$PATH"
+
+# opencode
+export PATH=/home/adambeck/.opencode/bin:$PATH
+
+[ -f ~/.secrets ] && source ~/.secrets

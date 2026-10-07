@@ -1,31 +1,12 @@
 [user]
-    email = adam.beck@icf.com
+    email = adam.beck@codelobe.io
     name = Adam Beck
 
 [init]
     defaultBranch = main
 
 [core]
-  pager = delta
-
-[alias]
-    # `git log` with patches shown with difftastic.
-    dl = -c diff.external=difft log -p --ext-diff
-
-    # Show the most recent commit with difftastic.
-    ds = -c diff.external=difft show --ext-diff
-
-    # `git diff` with difftastic.
-    dft = difftool -y --tool=difft-inline
-
-[interactive]
-  diffFilter = delta --color-only
-
-[delta]
-  features = colibri
-  navigate = true
-  light = false
-  side-by-side = false
+	pager = hunk pager
 
 [merge]
     tool = nvimdiff
@@ -33,8 +14,6 @@
 [mergetool "nvimdiff"]
     cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
-[difftool]
-  prompt = false
 [credential "https://github.com"]
 	helper = 
 	helper = !$HOME/.local/share/mise/shims/gh auth git-credential
