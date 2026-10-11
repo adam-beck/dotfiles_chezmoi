@@ -7,6 +7,8 @@ go = "latest"
 python = "3.14"
 erlang = "latest"
 elixir = "latest"       # requires erlang
+nub = "latest"
+cloudflared = "latest"
 
 # --- Dotfile management ---
 chezmoi = "2.69.4"      # pinned
@@ -26,6 +28,8 @@ bottom = "latest"       # top
 glow = "latest"         # markdown renderer
 "aqua:sxyazi/yazi" = "latest"   # file manager
 "cargo:scooter" = "latest"      # find & replace TUI
+"github:pvolok/dekit" = "latest"
+killport = "latest"
 
 # --- Git & GitHub ---
 lazygit = "latest"
@@ -75,5 +79,5 @@ lua-language-server = "latest"
 {{- end }}
 
 [settings]
-idiomatic_version_file_enable_tools = []    # don't read .nvmrc, .python-version, etc.
+idiomatic_version_file_enable_tools = ["node"]    # don't read .nvmrc, .python-version, etc.
 experimental = true                         # needed for the nix: backend

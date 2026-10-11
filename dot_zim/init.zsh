@@ -1,4 +1,4 @@
-# FILE AUTOMATICALLY GENERATED FROM /home/adam/.zimrc
+# FILE AUTOMATICALLY GENERATED FROM /home/adambeck/.zimrc
 # EDIT THE SOURCE FILE AND THEN RUN zimfw build. DO NOT DIRECTLY EDIT THIS FILE!
 
 if [[ -e ${ZIM_CONFIG_FILE:-${ZDOTDIR:-${HOME}}/.zimrc} ]] zimfw() { source "${HOME}/.zim/zimfw.zsh" "${@}" }
@@ -15,3 +15,4 @@ source "${HOME}/.zim/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source "${HOME}/.zim/modules/zsh-history-substring-search/zsh-history-substring-search.zsh"
 source "${HOME}/.zim/modules/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.zim/modules/fzf-marks/fzf-marks.plugin.zsh"
+source "${HOME}/.zim/modules/fzf-tab/fzf-tab.zsh"
